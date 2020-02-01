@@ -14,7 +14,7 @@ def win():
         window = sg.Window('Window Title', layout)
         while True:
             event, values = window.read()
-            if event in (None, 'Cancel'):   # if user closes window or clicks cancel
+            if event in (None, 'Exit'):   # if user closes window or clicks cancel
                 break
             page = values[0]
             if not page.startswith('https://') or page.startswith('http://'):
