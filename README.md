@@ -2,11 +2,15 @@
 This program will check a specified website and return it's status.
 
 # Future Developments
-I will be making this into a GUI soon. Suggestions are appreciated.
+Quality off code will be better & add more GUIs.
+Switch to only tkinter for learning purposes.
 
 # Installation
 ```
 pipenv install requests
+```
+```
+pipenv install pysimplegui
 ```
 
 # Contact
