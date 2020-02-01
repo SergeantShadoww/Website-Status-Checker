@@ -12,7 +12,6 @@ def win():
                     [sg.Button('Check'), sg.Button('Exit')] ]
 
         window = sg.Window('Window Title', layout)
-        # Event Loop to process "events" and get the "values" of the inputs
         while True:
             event, values = window.read()
             if event in (None, 'Cancel'):   # if user closes window or clicks cancel
@@ -32,6 +31,7 @@ def main():
     except Exception as e:
         print(e)
         sg.Popup('\nWebsite is down or your request was blocked.')
+        win()
     #Add more status codes if you want, these are just the codes I thought off.
     if ww.status_code == 404:
         x = "Page could not be found, 404."
