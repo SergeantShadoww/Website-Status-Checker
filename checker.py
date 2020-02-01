@@ -1,16 +1,37 @@
 import requests
+import PySimpleGUI as sg
 
-def main():
-    w = input('Enter website to check the status off.')
-    if not w.startswith("https://") or w.startswith("http://"):
-        print("Please include http/https.")
-        main()
+def win():
+    global page
     try:
-        ww = requests.get(w)
+
+        sg.theme('DarkAmber')  
+
+        layout = [  [sg.Text('Website Status Checker')],
+                    [sg.Text('Enter website to check status off.'), sg.InputText()],
+                    [sg.Button('Check'), sg.Button('Exit')] ]
+
+        window = sg.Window('Window Title', layout)
+        # Event Loop to process "events" and get the "values" of the inputs
+        while True:
+            event, values = window.read()
+            if event in (None, 'Cancel'):   # if user closes window or clicks cancel
+                break
+            page = values[0]
+            if not page.startswith('https://') or page.startswith('http://'):
+                sg.Popup('Please enter website including http || https!')
+            else: 
+                print('Calling checker...')
+                main()
     except Exception as e:
         print(e)
-        print('\nWebsite is down or your request was blocked.')
-        exit()
+
+def main():
+    try:
+        ww = requests.get(page)
+    except Exception as e:
+        print(e)
+        sg.Popup('\nWebsite is down or your request was blocked.')
     #Add more status codes if you want, these are just the codes I thought off.
     if ww.status_code == 404:
         x = "Page could not be found, 404."
@@ -20,11 +41,11 @@ def main():
         x = "Service unavailbale, 503."
     else:
         x = ww.status_code
-    print("Result:",x)
+    sg.Popup("Result:",x)
 
     #Logging section.
     f = open('logs.txt', 'a')
-    f.write(w+":"+" "+str(ww.status_code))
+    f.write(page+":"+" "+str(ww.status_code))
     f.close()
 
-main()
+win()
