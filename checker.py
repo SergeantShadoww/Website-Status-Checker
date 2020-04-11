@@ -6,7 +6,6 @@ def win():
     try:
 
         sg.theme('DarkAmber')  
-
         layout = [  [sg.Text('Website Status Checker')],
                     [sg.Text('Enter website to check status off.'), sg.InputText()],
                     [sg.Button('Check'), sg.Button('Exit')] ]
