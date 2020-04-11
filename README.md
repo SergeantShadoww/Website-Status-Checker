@@ -14,4 +14,8 @@ pipenv install pysimplegui
 ```
 
 # Contact
-Discord: MrShadow#0906
+Discord: MrShadow#0001
+
+# License
+
+This project is licensed under the Apache License 2.0 License - see the LICENSE.md file for details.
